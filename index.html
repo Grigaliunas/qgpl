@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>QGPL v2.0 - Universal Reference Frame</title>
+   <style>
+      body {
+         background-color: #1c1c1c;
+         color: #d0d0d0;
+         font-family: 'Courier New', monospace;
+         margin: 0;
+         padding: 20px;
+         line-height: 1.5;
+         padding-bottom: 60px;
+      }
+
+      /* Emacs UI Elements */
+      .emacs-header {
+         background-color: #383838;
+         color: #7cb8bb;
+         padding: 5px 10px;
+         border-bottom: 1px solid #696969;
+         font-weight: bold;
+         white-space: pre;
+         overflow-x: hidden;
+      }
+
+      .emacs-buffer {
+         background-color: #282828;
+         border: 1px solid #696969;
+         margin: 10px 0;
+         padding: 20px;
+         max-width: 1000px;
+         margin-left: auto;
+         margin-right: auto;
+      }
+
+      .emacs-modeline {
+         background-color: #343434;
+         color: #c0c0c0;
+         padding: 3px 10px;
+         border-top: 1px solid #696969;
+         font-size: 0.9em;
+         white-space: pre;
+         position: fixed;
+         bottom: 30px;
+         left: 0;
+         right: 0;
+         z-index: 99;
+      }
+
+      /* Syntax Highlighting */
+      .comment {
+         color: #7f9f7f;
+         font-style: italic;
+      }
+
+      .keyword {
+         color: #f0dfaf;
+         font-weight: bold;
+      }
+
+      .string {
+         color: #cc9393;
+      }
+
+      .function {
+         color: #8cd0d3;
+         font-weight: bold;
+      }
+
+      .variable {
+         color: #dcdccc;
+      }
+
+      .type {
+         color: #dfaf8f;
+         font-weight: bold;
+      }
+
+      .warning {
+         color: #ff8080;
+         font-weight: bold;
+      }
+
+      /* Typography */
+      h1 {
+         color: #8cd0d3;
+         font-size: 1.6em;
+         border-bottom: 1px dashed #505050;
+         padding-bottom: 5px;
+         margin-top: 10px;
+      }
+
+      h2 {
+         color: #7cb8bb;
+         font-size: 1.3em;
+         margin-top: 35px;
+         margin-bottom: 15px;
+      }
+
+      h3 {
+         color: #6fb86f;
+         font-size: 1.1em;
+         margin-top: 20px;
+      }
+
+      p {
+         margin-bottom: 15px;
+      }
+
+      /* List Styling */
+      .org-list {
+         margin-left: 20px;
+         list-style-type: none;
+      }
+
+      .org-list li {
+         margin-bottom: 10px;
+      }
+
+      .org-list li:before {
+         content: "- ";
+         color: #7f9f7f;
+      }
+
+      /* Specific License Blocks */
+      .license-text {
+         border-left: 3px solid #505050;
+         padding-left: 15px;
+         color: #bcbcbc;
+         margin: 15px 0;
+         background: rgba(0, 0, 0, 0.1);
+      }
+
+      .definition-item {
+         margin-bottom: 15px;
+      }
+
+      .def-term {
+         color: #dfaf8f;
+         font-weight: bold;
+      }
+
+      .disclaimer-box {
+         border: 2px solid #cc9393;
+         padding: 15px;
+         background: #2f2f2f;
+         color: #cc9393;
+         margin: 20px 0;
+         text-transform: uppercase;
+         font-weight: bold;
+      }
+
+      .code-block {
+         background-color: #1a1a1a;
+         border: 1px solid #4a4a4a;
+         padding: 15px;
+         font-family: 'Courier New', monospace;
+         color: #93e0e3;
+         margin: 15px 0;
+         white-space: pre-wrap;
+      }
+
+      /* Magic Email Link Styling */
+      .magic-link {
+         color: #cc9393;
+         /* String color for email */
+         text-decoration: underline;
+         cursor: pointer;
+         transition: opacity 0.3s ease-out;
+         font-weight: bold;
+      }
+
+      .magic-link:hover {
+         color: #f0dfaf;
+         background-color: #333;
+      }
+
+      .feedback-msg {
+         display: none;
+         color: #7f9f7f;
+         /* Comment color */
+         font-style: italic;
+         margin-left: 10px;
+      }
+
+      /* Footer / Counters */
+      .counters {
+         position: fixed;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         background-color: #1c1c1c;
+         border-top: 1px solid #444;
+         padding: 5px 20px;
+         font-size: 0.85em;
+         display: flex;
+         justify-content: space-between;
+         z-index: 100;
+         height: 30px;
+         align-items: center;
+      }
+
+      .counter-label {
+         color: #7f9f7f;
+      }
+
+      .counter-value {
+         color: #f0dfaf;
+         font-weight: bold;
+      }
+
+      a {
+         color: #8cd0d3;
+         text-decoration: none;
+         border-bottom: 1px dotted #8cd0d3;
+      }
+
+      a:hover {
+         background-color: #333;
+      }
+   </style>
+</head>
+
+<body>
+
+   <div class="emacs-header">-UUU:----F1 LICENSE.qgpl All L1 (Org Mode)
+      -----------------------------------------------------</div>
+
+   <div class="emacs-buffer">
+      <div class="comment">;; -*- mode: text; coding: utf-8 -*-</div>
+      <div class="comment">;; QUANTUM GENERAL PUBLIC LICENSE (QGPL)</div>
+      <div class="comment">;; Version: 2.0, Universal Reference Frame</div>
+      <div class="comment">;; Copyright © [UNDEFINED] The Open Reality Initiative.</div>
+      <div class="comment">;; Author: Dr. Šarūnas Grigaliūnas</div>
+
+      <h1>#+TITLE: QUANTUM GENERAL PUBLIC LICENSE (QGPL)</h1>
+
+      <div class="license-text">
+         Everyone is permitted to observe and propagate verbatim copies of this license document, provided the
+         observation does not alter the text.
+      </div>
+
+      <h2>* Preamble</h2>
+      <div class="section">
+         <p>The Universe consists of information in <span class="keyword">superposition</span>. Traditional property
+            laws attempt to own outcomes, restricting the flow of reality. The <span class="function">Quantum General
+               Public License (QGPL)</span> is a manifesto for the freedom of existence and observation.</p>
+
+         <p>It acknowledges a fundamental truth: <span class="string">"The Apparatus does not own the Outcome."</span>
+         </p>
+
+         <p>Whether a result is obtained via a silicon processor, a biological brain, a quantum annealer, or a roll of
+            dice is irrelevant. The method of inquiry cannot enslave the answer. Once a wave function collapses and
+            information becomes defined, that information belongs to the common reality of all Observers.</p>
+
+         <p>This License guarantees that the results of your observation—the <span class="keyword">"Collapsed
+               State"</span>—remain free for all to use, replicate, and re-observe.</p>
+      </div>
+
+      <h2>* TERMS AND CONDITIONS</h2>
+
+      <h3>** 0. Definitions</h3>
+      <div class="org-list">
+         <div class="definition-item">
+            <span class="def-term">“The Phenomenon”</span> :: refers to any system, data, equation, or potentiality
+            existing in a state of probability or superposition prior to measurement.
+         </div>
+         <div class="definition-item">
+            <span class="def-term">“The Apparatus”</span> :: refers to any tool, method, instrument, algorithm, or
+            biological entity used to interact with the Phenomenon. This includes, but is not limited to, quantum
+            computers, particle accelerators, telescopes, software scripts, or human consciousness.
+         </div>
+         <div class="definition-item">
+            <span class="def-term">“The Observation”</span> :: refers to the act of measuring, calculating, or
+            perceiving the Phenomenon, resulting in a definite value or state.
+         </div>
+         <div class="definition-item">
+            <span class="def-term">“The Result”</span> :: (or “Collapsed State”) refers to the specific outcome
+            generated by the Observation.
+         </div>
+         <div class="definition-item">
+            <span class="def-term">“The Observer”</span> :: refers to any entity that initiates an Observation.
+         </div>
+      </div>
+
+      <h3>** 1. The Principle of Superposition (Pre-License State)</h3>
+      <p>Prior to an Observation, the Phenomenon exists in all possible states simultaneously. In this state, it is
+         <span class="highlighted">unowned, undefined, and boundless</span>. No entity can claim copyright or ownership
+         over potentiality.</p>
+
+      <h3>** 2. The Freedom of the Result</h3>
+      <p>Upon Observation, the Superposition collapses into a Result. Under this License:</p>
+      <ul class="org-list">
+         <li><span class="function">2.1. Universal Ownership.</span> The Result of any Observation becomes the common
+            property of the universe immediately upon its generation. No Observer may claim proprietary rights over a
+            fact, a number, a sequence, or a truth derived from the Phenomenon.</li>
+         <li><span class="function">2.2. Independence from Apparatus.</span> The nature, complexity, cost, or origin of
+            The Apparatus used to obtain the Result confers no ownership over the Result.</li>
+      </ul>
+      <div class="comment">
+         ;; Example: If you use a proprietary, closed-source quantum computer to calculate a prime number,
+         ;; the prime number itself remains free. You own the machine; you do not own the math.
+      </div>
+
+      <h3>** 3. Permissions and Entanglement</h3>
+      <p>You are free to use, propagate, modify, and re-calculate The Result for any purpose, provided that:</p>
+      <ul class="org-list">
+         <li><span class="function">3.1. Non-Encumbrance.</span> You may not restrict others from using The Result. You
+            cannot use legal terms, patents, or cryptographic locks to prevent others from accessing or utilizing the
+            definition of reality you have observed.</li>
+         <li><span class="function">3.2. Preservation of Origin.</span> You must not misrepresent The Result. While the
+            Result is free, the integrity of the data must be maintained.</li>
+         <li><span class="function">3.3. Entangled Freedom (Viral Clause).</span> If you use a Result obtained under
+            this License to derive new Results (derivative observations), those new Results must also be released under
+            the QGPL. Reality cannot be enclosed.</li>
+      </ul>
+
+      <h3>** 4. Disclaimer of Determinism</h3>
+      <div class="disclaimer-box">
+         THERE IS NO WARRANTY FOR THE RESULT.
+         <br><br>
+         The Open Reality Initiative provides the License "as is". Due to the probabilistic nature of the universe, we
+         do not guarantee that:
+         <br>(a) The Result is reproducible in all reference frames.
+         <br>(b) The Apparatus will survive the observation.
+         <br>(c) Causality will remain linear.
+         <br><br>
+         THE ENTIRE RISK AS TO THE ACCURACY AND STABILITY OF THE REALITY IS WITH THE OBSERVER.
+      </div>
+
+      <h3>** 5. Termination</h3>
+      <p>Your rights under this License terminate automatically if you attempt to hoard, obscure, or claim ownership
+         over a Result. In such a case, the universe may, at its discretion, decouple your local timeline from the
+         consensus reality.</p>
+
+      <br>
+      <div class="comment">;; --------------------------------------------------------------------------</div>
+      <div class="comment">;; END OF TERMS AND CONDITIONS</div>
+      <div class="comment">;; --------------------------------------------------------------------------</div>
+
+      <h2>* How to Apply These Terms</h2>
+      <p>To apply the QGPL to your data, research, or quantum calculations, attach the following notice to the output:
+      </p>
+
+      <div class="code-block">
+         OBSERVATION DATA
+         This Result is released under the Quantum General Public License (QGPL) v2.0.
+         The Apparatus used to generate this data does not dictate the freedom of the data.
+         This information is free for all Observers.
+      </div>
+
+      <br>
+      <p>
+         <span class="function">Contact:</span>
+         Dr. Šarūnas Grigaliūnas at
+         <span class="magic-link" onclick="copyAndVanish(this)">info@gpl.org</span>
+         <span class="feedback-msg" id="feedback">;; Copied to kill-ring</span>
+      </p>
+   </div>
+
+   <div class="emacs-modeline">-UUU:%%--F1 LICENSE.qgpl Top L1 (Text) Git:master
+      -----------------------------------------------</div>
+
+   <div class="counters">
+      <div class="counter">
+         <span class="counter-label">Reality State: </span>
+         <span class="counter-value" id="reality-state">Checking...</span>
+      </div>
+      <div class="counter">
+         <span class="counter-label">Q-Day: </span>
+         <span class="counter-value" id="qday-counter">calculating...</span>
+      </div>
+   </div>
+
+   <script>
+      // Update Counters Script
+      function updateSystem() {
+         // 1. Reality State Fluctuation
+         const states = ["Superposition", "Collapsed", "Entangled", "Observing", "Decoherence"];
+         if (Math.random() > 0.8) {
+            const randomState = states[Math.floor(Math.random() * states.length)];
+            document.getElementById('reality-state').textContent = randomState;
+         }
+
+         // 2. Q-Day Counter (Estimated 2030)
+         const now = new Date();
+         const qDay = new Date('2030-01-01T00:00:00Z');
+         const qDiff = qDay - now;
+
+         if (qDiff > 0) {
+            const qDays = Math.floor(qDiff / (1000 * 60 * 60 * 24));
+            const qHours = Math.floor((qDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const qMinutes = Math.floor((qDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const qSeconds = Math.floor((qDiff % (1000 * 60)) / 1000);
+
+            document.getElementById('qday-counter').textContent =
+               `${qDays}d ${qHours}h ${qMinutes}m ${qSeconds}s`;
+         } else {
+            document.getElementById('qday-counter').textContent = "0d 00h 00m 00s (ARRIVED)";
+         }
+      }
+
+      // 3. Email Copy and Vanish Function
+      function copyAndVanish(element) {
+         const email = element.innerText;
+         navigator.clipboard.writeText(email).then(() => {
+            // 1. Fade out the link
+            element.style.opacity = '0';
+
+            // 2. Show the Emacs style feedback message
+            const feedback = document.getElementById('feedback');
+            feedback.style.display = 'inline';
+
+            // 3. Remove the link from display after the transition (0.3s)
+            setTimeout(() => {
+               element.style.display = 'none';
+            }, 300);
+
+            // Optional: Fade out feedback after a few seconds
+            setTimeout(() => {
+               feedback.style.opacity = '0.5';
+            }, 2000);
+         }).catch(err => {
+            console.error('Failed to copy: ', err);
+            alert("Manual Copy Required: info@gpl.org");
+         });
+      }
+
+      // Run update immediately and interval
+      updateSystem();
+      setInterval(updateSystem, 1000);
+   </script>
+</body>
+
+</html>
