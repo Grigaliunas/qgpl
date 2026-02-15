@@ -1,0 +1,231 @@
+QUANTUM GENERAL PUBLIC LICENSE (QGPL)
+Version 3.0 — Quantum‑Safe Edition
+
+Copyright © 2026 The Open Reality Initiative.
+Author: Dr. Šarūnas Grigaliūnas
+
+Everyone is permitted to copy and distribute verbatim copies of this license document,
+but changing it is not allowed.
+
+------------------------------------------------------------
+Preamble
+------------------------------------------------------------
+
+The Quantum General Public License (QGPL) is a copyleft license intended for the open
+sharing of observation outputs (“Results”) and related materials, including datasets,
+documentation, and (when provided) the code and configurations used to produce or
+process those Results.
+
+This version adds explicit post‑quantum (“quantum‑resistant”) requirements for
+distribution integrity and, when cryptography is used for access or transport,
+for quantum‑resistant (or hybrid) key establishment and signatures. These technical
+requirements are intended to reduce reliance on public‑key cryptosystems that are
+known to be vulnerable to large‑scale quantum attacks.
+
+This License is not a security guarantee. It is a legal permission and set of
+conditions for exercising rights in the Work.
+
+------------------------------------------------------------
+TERMS AND CONDITIONS
+------------------------------------------------------------
+
+0. Definitions
+
+“License” means this Quantum General Public License (QGPL) version 3.0.
+
+“Licensor” means the copyright holder(s) or other rights holder(s) that are licensing
+the Work under this License.
+
+“You” (or “Recipient”) means an individual or legal entity exercising permissions
+granted by this License.
+
+“Work” means any material that the Licensor makes available under this License,
+including, as applicable:
+  (a) “Result(s)” (defined below);
+  (b) datasets and database contents;
+  (c) documentation, papers, reports, and other explanatory text;
+  (d) software source code, scripts, notebooks, build files, configuration files,
+      and/or firmware (“Apparatus Code”); and
+  (e) any other copyrightable or database‑protected materials included with (a)–(d).
+
+“Phenomenon” means any system, data, equation, process, or potential state that may
+be measured, computed, simulated, or otherwise examined.
+
+“Apparatus” means any tool, method, instrument, algorithm, or biological entity used
+to interact with the Phenomenon. This includes, without limitation, software,
+computers (classical or quantum), measurement devices, laboratory instruments,
+and human operators.
+
+“Observation” means an act of measurement, calculation, simulation, inference,
+or other procedure that produces a definite output.
+
+“Result” (or “Observation Output”) means the specific output produced by an
+Observation, including values, sequences, measurements, derived quantities,
+model outputs, and recorded data.
+
+“Modify” means to copy from, adapt, transform, arrange, translate, correct, extend,
+or otherwise create a work based on the Work, where such action is reserved to the
+Licensor under applicable copyright and/or database laws.
+
+“Distribute” means to convey, provide, publish, sublicense, transmit, or otherwise
+make available the Work (or a Modified Work) to another party, including by public
+download, package repositories, content delivery networks, or physical media.
+
+“Quantum‑Vulnerable Public‑Key Cryptography” means public‑key schemes whose security
+is based on integer factorization and/or discrete logarithms (including common RSA,
+finite‑field Diffie‑Hellman, elliptic‑curve Diffie‑Hellman, DSA, ECDSA, and EdDSA),
+and any successor schemes that are comparably vulnerable to large‑scale quantum
+attacks.
+
+“Quantum‑Resistant Cryptography” means post‑quantum cryptography algorithms that are
+standardized by NIST as:
+  • ML‑KEM (FIPS 203) for key encapsulation, and/or any later NIST revision or
+    replacement thereof; and
+  • ML‑DSA (FIPS 204) and/or SLH‑DSA (FIPS 205) for digital signatures, and/or any
+    later NIST revision or replacement thereof;
+and also includes NIST‑approved stateful hash‑based signature schemes (XMSS, LMS)
+as specified in NIST SP 800‑208, and/or later NIST revisions or replacements.
+
+“Quantum‑Safe Distribution Metadata” means, at minimum: (i) a cryptographic hash
+of the distributed artifact, (ii) a Quantum‑Resistant digital signature over that
+hash (or over the artifact), (iii) the corresponding public key(s), and (iv) an
+unambiguous identifier of the algorithm(s) and parameter set(s) used.
+
+1. Scope of Rights; Relationship to Law
+
+1.1 Copyright and related rights. Subject to the conditions of this License, the
+Licensor grants You a worldwide, royalty‑free, non‑exclusive license to exercise
+the rights in the Work that are controlled by the Licensor under copyright and
+related rights (including neighboring rights) to:
+  (a) use, reproduce, and run the Work;
+  (b) Distribute the Work;
+  (c) Modify the Work and Distribute Modified Works; and
+  (d) publicly display, perform, and communicate the Work to the public.
+
+1.2 Database rights. Where the Work is subject to sui generis database rights or
+similar rights, the Licensor grants You a worldwide, royalty‑free, non‑exclusive
+license to extract, reuse, reproduce, and Distribute all or a substantial part of
+the database contents, and to create and Distribute databases that incorporate
+all or a substantial part of those contents, subject to this License.
+
+1.3 Facts and uncopyrightable material. In many jurisdictions, facts, numbers, and
+other purely factual information are not protected by copyright. To the extent any
+Result (or portion of a Result) is not protected by copyright, this License is
+intended to operate as a public permission and covenant not to sue under any rights
+the Licensor may hold (including database rights, where applicable), to allow the
+broadest reuse consistent with applicable law.
+
+2. Copyleft; Share‑Alike Condition (Entangled Freedom)
+
+2.1 License of Modified Works. If You Distribute a Modified Work, You must license
+the Modified Work, as a whole, under this same License (QGPL v3.0), and include a
+copy of this License with the Modified Work.
+
+2.2 Downstream recipients. You must ensure that each recipient of the Work or a
+Modified Work receives the Work under this License and is informed of their rights
+under this License.
+
+2.3 No relicensing under more restrictive terms. You may not Distribute the Work
+(or a Modified Work) under any terms that would restrict the rights granted by
+this License.
+
+3. Notices; Attribution; Provenance
+
+3.1 License notice. You must keep intact all copyright notices, license notices,
+and attribution statements contained in the Work.
+
+3.2 Change notices. If You Modify the Work, You must add prominent notices stating
+that You changed the Work and the date of the change.
+
+3.3 Provenance integrity. You may not misrepresent the origin of the Work or any
+Result. If You Distribute a Result with corrections, filtering, normalization,
+or other transformations, You must clearly indicate that the distributed Result
+is modified relative to the original.
+
+4. No Access Restrictions; No Technical Barriers
+
+4.1 No denial of access. You may not use legal terms, contract terms, patents,
+or technical measures to prevent others from exercising the rights granted by this
+License.
+
+4.2 No DRM and no cryptographic locks to restrict rights. You may not Distribute
+the Work in a form that is effectively controlled by digital restrictions management
+or cryptographic access controls that prevent recipients from exercising rights
+granted by this License. If You Distribute the Work in an encrypted or access‑
+controlled form for transport or storage, You must also provide a practical means
+for recipients to obtain an unencumbered copy under this License.
+
+5. Quantum‑Safe Requirements (Quantum Protection)
+
+5.1 Quantum‑safe release integrity (mandatory for Distribution). If You Distribute
+the Work (or a Modified Work), You must provide Quantum‑Safe Distribution Metadata
+for the distributed artifact using at least one Quantum‑Resistant signature scheme
+(as defined in Section 0). The metadata must be made available with the same level
+of accessibility as the artifact itself.
+
+5.2 Quantum‑safe (or hybrid) key establishment when cryptography is used for
+transport or access. If You provide the Work to recipients over a network using
+cryptographic authentication, key agreement, or encrypted transport, You must
+support Quantum‑Resistant key establishment (e.g., ML‑KEM) or a hybrid construction
+that combines Quantum‑Resistant key establishment with a classical method. You must
+not rely solely on Quantum‑Vulnerable Public‑Key Cryptography for establishing the
+confidentiality or authenticity of such transport.
+
+5.3 Algorithm agility. If NIST publishes revisions, errata, or replacements for the
+standards referenced in the definition of Quantum‑Resistant Cryptography, You may
+use the revised or replacement standards to satisfy Sections 5.1 and 5.2.
+
+5.4 No security claims by default. This License does not grant permission to make
+false or misleading security claims about the Work. Compliance with Section 5 does
+not imply that any particular security property is achieved.
+
+6. Patent License
+
+6.1 Patent grant. Each Licensor grants You a worldwide, royalty‑free, non‑exclusive,
+irrevocable (except as stated in Section 7) patent license to make, have made, use,
+offer to sell, sell, import, and otherwise transfer the Work, where such license
+applies only to patent claims licensable by the Licensor that would be infringed
+by exercising rights granted by this License in the unmodified Work.
+
+6.2 Patent retaliation. If You initiate patent litigation (including a cross‑claim
+or counterclaim) alleging that the Work infringes a patent, then any patent licenses
+granted to You under this License for the Work terminate as of the date such
+litigation is filed.
+
+7. Termination
+
+7.1 Automatic termination. Your rights under this License terminate automatically
+if You fail to comply with its terms.
+
+7.2 Reinstatement. If You cease all violation of this License, then Your license
+is reinstated provisionally, unless and until the Licensor explicitly and finally
+terminates Your rights.
+
+8. Disclaimer of Warranty
+
+THE WORK IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, AND NON‑INFRINGEMENT. THE ENTIRE RISK AS TO THE QUALITY,
+ACCURACY, SECURITY, AND PERFORMANCE OF THE WORK IS WITH YOU.
+
+9. Limitation of Liability
+
+IN NO EVENT AND UNDER NO LEGAL THEORY, WHETHER IN TORT (INCLUDING NEGLIGENCE),
+CONTRACT, OR OTHERWISE, SHALL ANY LICENSOR BE LIABLE TO YOU FOR DAMAGES, INCLUDING
+ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY CHARACTER
+ARISING AS A RESULT OF THIS LICENSE OR OUT OF THE USE OR INABILITY TO USE THE WORK.
+
+------------------------------------------------------------
+How to Apply These Terms (Notice Template)
+------------------------------------------------------------
+
+Attach the following notice to the Work, Result, dataset, or distribution:
+
+OBSERVATION DATA / WORK NOTICE
+This Work (including any included Results) is released under the Quantum General Public
+License (QGPL) v3.0 — Quantum‑Safe Edition.
+You may use, modify, and distribute this Work under the terms of the QGPL v3.0.
+
+Quantum‑Safe Distribution Metadata (Section 5) is provided with this distribution.
+
+Contact: Dr. Šarūnas Grigaliūnas <info@gpl.org>
